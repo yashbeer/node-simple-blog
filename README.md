@@ -15,9 +15,9 @@ For all API endpoints which require authentication, you need to send the followi
 
 `[POST] /api/users/`
 
-Authentication: None
+**Authentication:** None
 
-Request:
+**Request:**
 
   - Required: name, email, password
 
@@ -31,7 +31,7 @@ Request:
 }
 ```
 
-Success Response:
+**Success Response:**
 
   - Code: 200
   
@@ -50,7 +50,7 @@ Success Response:
 }
 ````
 
-Error Response:
+**Error Response:**
 
   - Code: 400
   
@@ -70,7 +70,7 @@ Error Response:
 }
 ```
 
-Example:
+**Example:**
 ```
 var data = {
     "name": "Shweta",
@@ -95,9 +95,9 @@ $.ajax({
 
 `[POST] /api/users/login`
 
-Authentication: None
+**Authentication:** None
 
-Request:
+**Request:**
 
   - Required: email, password
 
@@ -110,7 +110,7 @@ Request:
 }
 ```
 
-Success Response:
+**Success Response:**
 
   - Code: 200
   
@@ -129,7 +129,7 @@ Success Response:
 }
 ````
 
-Error Response:
+**Error Response:**
 
   - Code: 400
   
@@ -137,7 +137,7 @@ Error Response:
 {}
 ```
 
-Example:
+**Example:**
 ```
 var data = {
     "email": "userone@example.com",
