@@ -21,7 +21,7 @@ Request:
 
   - Required: name, email, password
 
-  - Optional:
+  - Optional: None
 
 ```
 {
@@ -91,11 +91,57 @@ $.ajax({
 });
 ```
 
-2. LOGIN
-----------------
+### 2. Login
+
+`[POST] /api/users/login`
+
+Authentication: None
+
+Request:
+
+  - Required: email, password
+
+  - Optional: None
+
+```
+{
+    "email": "userone@example.com",
+    "password": "UserOne321"
+}
+```
+
+Success Response:
+
+  - Code: 200
+  
+````
+{
+    "user":{
+        "isAdmin":false,
+        "_id":"5e6bdff290359b00170e989a",
+        "name":"UserOne",
+        "email":"userone@example.com",
+        "createdAt":"2020-03-13T19:33:06.494Z",
+        "updatedAt":"2020-03-13T19:33:41.885Z",
+        "__v":2
+    },
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTZiZGZmMjkwMzU5YjAwMTcwZTk4OWEiLCJpYXQiOjE1ODQxMjgwMjF9.EcO3DodX8bapEUV4h_Cyk2pQH2w8ff09vU5ikYr7lZ4"
+}
+````
+
+Error Response:
+
+  - Code: 400
+  
+```
+{}
+```
+
+Example:
+```
 var data = {
-    "email": "shweta@example.com",
-    "password": "shweta321"
+    "email": "userone@example.com",
+    "password": "UserOne321!!"
 }
 $.ajax({
     method: 'POST',
@@ -109,6 +155,7 @@ $.ajax({
         console.error('Seems network error');
     }
 });
+```
 
 3. LOGOUT
 ----------------
