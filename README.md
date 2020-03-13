@@ -88,7 +88,7 @@ $.ajax({
         console.log(res);
     },
     error: function (e) {
-        console.error(e);
+        console.error(e.responseJSON);
     }
 });
 ```
@@ -154,7 +154,7 @@ $.ajax({
         console.log(res);
     },
     error: function (e) {
-        console.error(e);
+        console.error(e.responseJSON);
     }
 });
 ```
@@ -197,7 +197,7 @@ $.ajax({
         console.log(res);
     },
     error: function (e) {
-        console.error(e);
+        console.error(e.responseJSON);
     }
 });
 ```
@@ -234,7 +234,7 @@ var data = {
     "name": "User One New"
 }
 $.ajax({
-    method: 'POST',
+    method: 'PATCH',
     url: '/api/users/me',
     contentType: 'application/json',
     data: JSON.stringify(data),
@@ -245,7 +245,7 @@ $.ajax({
         console.log(res);
     },
     error: function (e) {
-        console.error(e);
+        console.error(e.responseJSON);
     }
 });
 ```
@@ -287,7 +287,7 @@ $.ajax({
         console.log(res);
     },
     error: function (e) {
-        console.error(e);
+        console.error(e.responseJSON);
     }
 });
 ```
@@ -338,7 +338,7 @@ $.ajax({
         console.log(res);
     },
     error: function (e) {
-        console.error(e);
+        console.error(e.responseJSON);
     }
 });
 ```
@@ -377,7 +377,7 @@ $.ajax({
         console.log(res);
     },
     error: function (e) {
-        console.error(e);
+        console.error(e.responseJSON);
     }
 });
 ```
@@ -416,7 +416,7 @@ $.ajax({
         console.log(res);
     },
     error: function (e) {
-        console.error(e);
+        console.error(e.responseJSON);
     }
 });
 ```
@@ -464,7 +464,7 @@ $.ajax({
         console.log(res);
     },
     error: function (e) {
-        console.error(e);
+        console.error(e.responseJSON);
     }
 });
 ```
@@ -564,7 +564,7 @@ $.ajax({
 
 ### 12. Update Comment
 
-`[POST] /api/comments/:id`
+`[PATCH] /api/comments/:id`
 
 **Authentication:** JWT Token
 
@@ -747,7 +747,7 @@ $.ajax({
 
 ### 16. Moderate Comment Censor [ADMINS ONLY]
 
-`[POST] /api/users/logout`
+`[PATCH] /api/users/logout`
 
 **Authentication:** JWT Token
 
