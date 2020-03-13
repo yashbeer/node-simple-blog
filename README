@@ -1,13 +1,24 @@
-sudo service mongod start
-cd node-blog
-npm run dev
+## A simple blog API made using nodejs, express, mongodb, mongoose, jsonwebtoken
 
-------------
-mongo
-use post-manager
-db.users.find({})
-db.posts.find({})
+# API Documentation
 
+### 1. Create User
+
+`[POST] /api/users/`
+
+Request:
+```
+{
+    "name": "UserOne",
+    "email": "userone@example.com",
+    "password": "UserOne321"
+}
+```
+
+Response:
+````
+
+````
 
 1. CREATE USER
 --------------------
