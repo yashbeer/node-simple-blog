@@ -18,6 +18,11 @@ For all API endpoints which require authentication, you need to send the followi
 Authentication: None
 
 Request:
+
+  - Required: name, email, password
+
+  - Optional:
+
 ```
 {
     "name": "UserOne",
@@ -28,8 +33,8 @@ Request:
 
 Success Response:
 
-**Code:** 200
-
+  - Code: 200
+  
 ````
 {
    "user":{
@@ -45,8 +50,28 @@ Success Response:
 }
 ````
 
-1. CREATE USER
---------------------
+Error Response:
+
+  - Code: 400
+  
+```
+{
+    "driver":true,
+    "name":"MongoError",
+    "index":0,
+    "code":11000,
+    "keyPattern":{
+        "email":1
+    },
+    "keyValue":{
+        "email":"userone@example.com"
+    },
+    "errmsg":"E11000 duplicate key error collection: post-manager.users index: email_1 dup key: { email: \"userone@example.com\" }"
+}
+```
+
+Example:
+```
 var data = {
     "name": "Shweta",
     "email": "shweta@example.com",
@@ -64,6 +89,7 @@ $.ajax({
         console.error('Seems network error');
     }
 });
+```
 
 2. LOGIN
 ----------------
