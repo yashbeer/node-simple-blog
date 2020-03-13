@@ -562,9 +562,34 @@ $.ajax({
 });
 ```
 
+### 12. Update Comment
 
-12. UPDATE COMMENT
----------------------
+`[POST] /api/comments/:id`
+
+**Authentication:** JWT Token
+
+**Request:**
+
+  - Required: comment
+
+  - Optional: None
+
+```
+{
+    "comment": "Dont you know that from school?"
+}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+post [object]
+```
+
+**Example:**
+```
 var data = {
     "comment": "Dont you know that from school?"
 }
@@ -579,13 +604,38 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function (e) { // Hard failure, like network error
+    error: function (e) {
         console.error(e.responseJSON);
     }
 });
+```
 
-13. DELETE COMMENT
-------------------------
+### 13. Delete Comment
+
+`[DELETE] /api/comments/:id`
+
+**Authentication:** JWT Token
+
+**Request:**
+
+  - Required: None
+
+  - Optional: None
+
+```
+{}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+Post [Object] with deleted comment
+```
+
+**Example:**
+```
 $.ajax({
     method: 'DELETE',
     url: '/api/comments/5e6b3217fdbe6519ca45e161',
@@ -597,13 +647,42 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function (e) { // Hard failure, like network error
+    error: function (e) {
         console.error(e.responseJSON);
     }
 });
+```
 
-14. MODERATE POST CENSOR [ADMINS ONLY]
-------------------------------------------
+------------
+
+### 14. Moderate Post Censor [ADMINS ONLY]
+
+`[PATCH] /api/moderate/posts/:id`
+
+**Authentication:** JWT Token
+
+**Request:**
+
+  - Required: is_censored
+
+  - Optional: None
+
+```
+{
+    'is_censored': true
+}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+post [object]
+```
+
+**Example:**
+```
 var data = {
     'is_censored': true
 }
@@ -622,10 +701,34 @@ $.ajax({
         console.error(e.responseJSON);
     }
 });
+```
 
+### 15. Moderate Post Delete [ADMINS ONLY]
 
-15. MODERATE POST DELETE [ADMINS ONLY]
-------------------------------------------
+`[DELETE] /api/moderate/posts/:id`
+
+**Authentication:** JWT Token
+
+**Request:**
+
+  - Required: None
+
+  - Optional: None
+
+```
+{}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+post [object]
+```
+
+**Example:**
+```
 $.ajax({
     method: 'DELETE',
     url: '/api/moderate/posts/5e6a88a246ef1127463560b9',
@@ -636,13 +739,40 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function (e) { // Hard failure, like network error
+    error: function (e) {
         console.error(e.responseJSON);
     }
 });
+```
 
-16. MODERATE COMMENT CENSOR [ADMINS ONLY]
-------------------------------------------
+### 16. Moderate Comment Censor [ADMINS ONLY]
+
+`[POST] /api/users/logout`
+
+**Authentication:** JWT Token
+
+**Request:**
+
+  - Required: is_censored
+
+  - Optional: None
+
+```
+{
+    'is_censored': true
+}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+post [object]
+```
+
+**Example:**
+```
 var data = {
     'is_censored': true
 }
@@ -657,14 +787,38 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function (e) { // Hard failure, like network error
+    error: function (e) {
         console.error(e.responseJSON);
     }
 });
+```
 
+### 17. Moderate Comment Delete [ADMINS ONLY]
 
-17. MODERATE COMMENT DELETE [ADMINS ONLY]
-------------------------------------------
+`[DELETE] /api/moderate/comments/:id`
+
+**Authentication:** JWT Token
+
+**Request:**
+
+  - Required: None
+
+  - Optional: None
+
+```
+{}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+post [object]
+```
+
+**Example:**
+```
 $.ajax({
     method: 'DELETE',
     url: '/api/moderate/comments/5e6a88a246ef1127463560b9',
@@ -679,3 +833,5 @@ $.ajax({
         console.error(e.responseJSON);
     }
 });
+```
+
