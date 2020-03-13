@@ -11,6 +11,8 @@ For all API endpoints which require authentication, you need to send the followi
 
 `Authorization: Bearer <JWT Token received on login/signup>`
 
+--------------------
+
 ### 1. Create User
 
 `[POST] /api/users/`
@@ -202,7 +204,7 @@ $.ajax({
 
 ### 4. Update User
 
-`[POST] /api/users/me`
+`[PATCH] /api/users/me`
 
 **Authentication:** JWT Token
 
@@ -223,7 +225,7 @@ $.ajax({
   - Code: 200
   
 ```
-{}
+user [object]
 ```
 
 **Example:**
@@ -248,8 +250,32 @@ $.ajax({
 });
 ```
 
-5. DELETE USER
----------------------
+### 5. Delete User
+
+`[DELETE] /api/users/me`
+
+**Authentication:** JWT Token
+
+**Request:**
+
+  - Required: None
+
+  - Optional: None
+
+```
+{}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+user [object]
+```
+
+**Example:**
+```
 $.ajax({
     method: 'DELETE',
     url: '/api/users/me',
@@ -260,13 +286,42 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function () { // Hard failure, like network error
-        console.error('Seems network error');
+    error: function (e) {
+        console.error(e);
     }
 });
+```
+-----------------------------
 
-6. CREATE POST
-------------------------
+### 6. Create Post
+
+`[POST] /api/posts`
+
+**Authentication:** JWT Token
+
+**Request:**
+
+  - Required: title, description
+
+  - Optional: None
+
+```
+{    
+    "title": "Explain GSM in detail",
+    "description": "GSM explained in detailed way"
+}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+post [object]
+```
+
+**Example:**
+```
 var data = {    
     "title": "Explain GSM in detail",
     "description": "GSM explained in detailed way"
@@ -282,10 +337,11 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function () { // Hard failure, like network error
-        console.error('Seems network error');
+    error: function (e) {
+        console.error(e);
     }
 });
+```
 
 7. GET POST LIST
 ---------------------------
