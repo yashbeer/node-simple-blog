@@ -35,7 +35,7 @@ For all API endpoints which require authentication, you need to send the followi
 
   - Code: 200
   
-````
+```
 {
    "user":{
       "isAdmin":false,
@@ -48,7 +48,7 @@ For all API endpoints which require authentication, you need to send the followi
    },
    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTZiZGZmMjkwMzU5YjAwMTcwZTk4OWEiLCJpYXQiOjE1ODQxMjc5ODZ9.Pu65aRIBZHx3hEWc5ER-spny07woYWLRCsWjwZ63APE"
 }
-````
+```
 
 **Error Response:**
 
@@ -85,8 +85,8 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function () { // Hard failure, like network error
-        console.error('Seems network error');
+    error: function (e) {
+        console.error(e);
     }
 });
 ```
@@ -114,7 +114,7 @@ $.ajax({
 
   - Code: 200
   
-````
+```
 {
     "user":{
         "isAdmin":false,
@@ -127,7 +127,7 @@ $.ajax({
     },
     "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTZiZGZmMjkwMzU5YjAwMTcwZTk4OWEiLCJpYXQiOjE1ODQxMjgwMjF9.EcO3DodX8bapEUV4h_Cyk2pQH2w8ff09vU5ikYr7lZ4"
 }
-````
+```
 
 **Error Response:**
 
@@ -151,14 +151,38 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function () { // Hard failure, like network error
-        console.error('Seems network error');
+    error: function (e) {
+        console.error(e);
     }
 });
 ```
 
-3. LOGOUT
-----------------
+### 3. Logout
+
+`[POST] /api/users/logout`
+
+**Authentication:** JWT Token
+
+**Request:**
+
+  - Required: None
+
+  - Optional: None
+
+```
+{}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+{}
+```
+
+**Example:**
+```
 $.ajax({
     method: 'POST',
     url: '/api/users/logout',
@@ -170,10 +194,11 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function () { // Hard failure, like network error
-        console.error('Seems network error');
+    error: function (e) {
+        console.error(e);
     }
 });
+```
 
 4. UPDATE USER
 ------------------
