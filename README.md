@@ -1,10 +1,21 @@
-## A simple blog API made using nodejs, express, mongodb, mongoose, jsonwebtoken
+## A simple blog API
+
+Made using nodejs, express, mongodb, mongoose, jsonwebtoken
 
 # API Documentation
+
+Endpoint URL: `https://hero-yashbeer.herokuapp.com/`
+
+### Authentication: JWT Token
+For all API endpoints which require authentication, you need to send the following header as part of the request.
+
+`Authorization: Bearer <JWT Token received on login/signup>`
 
 ### 1. Create User
 
 `[POST] /api/users/`
+
+Authentication: None
 
 Request:
 ```
@@ -15,9 +26,23 @@ Request:
 }
 ```
 
-Response:
-````
+Success Response:
 
+**Code:** 200
+
+````
+{
+   "user":{
+      "isAdmin":false,
+      "_id":"5e6bdff290359b00170e989a",
+      "name":"UserOne",
+      "email":"userone@example.com",
+      "createdAt":"2020-03-13T19:33:06.494Z",
+      "updatedAt":"2020-03-13T19:33:06.686Z",
+      "__v":1
+   },
+   "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTZiZGZmMjkwMzU5YjAwMTcwZTk4OWEiLCJpYXQiOjE1ODQxMjc5ODZ9.Pu65aRIBZHx3hEWc5ER-spny07woYWLRCsWjwZ63APE"
+}
 ````
 
 1. CREATE USER
