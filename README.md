@@ -200,10 +200,36 @@ $.ajax({
 });
 ```
 
-4. UPDATE USER
-------------------
+### 4. Update User
+
+`[POST] /api/users/me`
+
+**Authentication:** JWT Token
+
+**Request:**
+
+  - Required: None
+
+  - Optional: name, email, password
+
+```
+{
+    "name": "User One New"
+}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+{}
+```
+
+**Example:**
+```
 var data = {
-    "name": "Shweta Singh"
+    "name": "User One New"
 }
 $.ajax({
     method: 'POST',
@@ -216,10 +242,11 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function () { // Hard failure, like network error
-        console.error('Seems network error');
+    error: function (e) {
+        console.error(e);
     }
 });
+```
 
 5. DELETE USER
 ---------------------
