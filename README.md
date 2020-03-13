@@ -1,16 +1,79 @@
-sudo service mongod start
-cd node-blog
-npm run dev
+## A simple blog API
 
-------------
-mongo
-use post-manager
-db.users.find({})
-db.posts.find({})
+Made using nodejs, express, mongodb, mongoose, jsonwebtoken
 
+# API Documentation
 
-1. CREATE USER
+Endpoint URL: `https://hero-yashbeer.herokuapp.com/`
+
+### Authentication: JWT Token
+For all API endpoints which require authentication, you need to send the following header as part of the request.
+
+`Authorization: Bearer <JWT Token received on login/signup>`
+
 --------------------
+
+### 1. Create User
+
+`[POST] /api/users/`
+
+**Authentication:** None
+
+**Request:**
+
+  - Required: name, email, password
+
+  - Optional: None
+
+```
+{
+    "name": "UserOne",
+    "email": "userone@example.com",
+    "password": "UserOne321"
+}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+{
+   "user":{
+      "isAdmin":false,
+      "_id":"5e6bdff290359b00170e989a",
+      "name":"UserOne",
+      "email":"userone@example.com",
+      "createdAt":"2020-03-13T19:33:06.494Z",
+      "updatedAt":"2020-03-13T19:33:06.686Z",
+      "__v":1
+   },
+   "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTZiZGZmMjkwMzU5YjAwMTcwZTk4OWEiLCJpYXQiOjE1ODQxMjc5ODZ9.Pu65aRIBZHx3hEWc5ER-spny07woYWLRCsWjwZ63APE"
+}
+```
+
+**Error Response:**
+
+  - Code: 400
+  
+```
+{
+    "driver":true,
+    "name":"MongoError",
+    "index":0,
+    "code":11000,
+    "keyPattern":{
+        "email":1
+    },
+    "keyValue":{
+        "email":"userone@example.com"
+    },
+    "errmsg":"E11000 duplicate key error collection: post-manager.users index: email_1 dup key: { email: \"userone@example.com\" }"
+}
+```
+
+**Example:**
+```
 var data = {
     "name": "Shweta",
     "email": "shweta@example.com",
@@ -24,16 +87,63 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function () { // Hard failure, like network error
-        console.error('Seems network error');
+    error: function (e) {
+        console.error(e.responseJSON);
     }
 });
+```
 
-2. LOGIN
-----------------
+### 2. Login
+
+`[POST] /api/users/login`
+
+**Authentication:** None
+
+**Request:**
+
+  - Required: email, password
+
+  - Optional: None
+
+```
+{
+    "email": "userone@example.com",
+    "password": "UserOne321"
+}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+{
+    "user":{
+        "isAdmin":false,
+        "_id":"5e6bdff290359b00170e989a",
+        "name":"UserOne",
+        "email":"userone@example.com",
+        "createdAt":"2020-03-13T19:33:06.494Z",
+        "updatedAt":"2020-03-13T19:33:41.885Z",
+        "__v":2
+    },
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTZiZGZmMjkwMzU5YjAwMTcwZTk4OWEiLCJpYXQiOjE1ODQxMjgwMjF9.EcO3DodX8bapEUV4h_Cyk2pQH2w8ff09vU5ikYr7lZ4"
+}
+```
+
+**Error Response:**
+
+  - Code: 400
+  
+```
+{}
+```
+
+**Example:**
+```
 var data = {
-    "email": "shweta@example.com",
-    "password": "shweta321"
+    "email": "userone@example.com",
+    "password": "UserOne321!!"
 }
 $.ajax({
     method: 'POST',
@@ -43,13 +153,38 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function () { // Hard failure, like network error
-        console.error('Seems network error');
+    error: function (e) {
+        console.error(e.responseJSON);
     }
 });
+```
 
-3. LOGOUT
-----------------
+### 3. Logout
+
+`[POST] /api/users/logout`
+
+**Authentication:** JWT Token
+
+**Request:**
+
+  - Required: None
+
+  - Optional: None
+
+```
+{}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+{}
+```
+
+**Example:**
+```
 $.ajax({
     method: 'POST',
     url: '/api/users/logout',
@@ -61,18 +196,45 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function () { // Hard failure, like network error
-        console.error('Seems network error');
+    error: function (e) {
+        console.error(e.responseJSON);
     }
 });
+```
 
-4. UPDATE USER
-------------------
+### 4. Update User
+
+`[PATCH] /api/users/me`
+
+**Authentication:** JWT Token
+
+**Request:**
+
+  - Required: None
+
+  - Optional: name, email, password
+
+```
+{
+    "name": "User One New"
+}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+user [object]
+```
+
+**Example:**
+```
 var data = {
-    "name": "Shweta Singh"
+    "name": "User One New"
 }
 $.ajax({
-    method: 'POST',
+    method: 'PATCH',
     url: '/api/users/me',
     contentType: 'application/json',
     data: JSON.stringify(data),
@@ -82,13 +244,38 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function () { // Hard failure, like network error
-        console.error('Seems network error');
+    error: function (e) {
+        console.error(e.responseJSON);
     }
 });
+```
 
-5. DELETE USER
----------------------
+### 5. Delete User
+
+`[DELETE] /api/users/me`
+
+**Authentication:** JWT Token
+
+**Request:**
+
+  - Required: None
+
+  - Optional: None
+
+```
+{}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+user [object]
+```
+
+**Example:**
+```
 $.ajax({
     method: 'DELETE',
     url: '/api/users/me',
@@ -99,13 +286,42 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function () { // Hard failure, like network error
-        console.error('Seems network error');
+    error: function (e) {
+        console.error(e.responseJSON);
     }
 });
+```
+-----------------------------
 
-6. CREATE POST
-------------------------
+### 6. Create Post
+
+`[POST] /api/posts`
+
+**Authentication:** JWT Token
+
+**Request:**
+
+  - Required: title, description
+
+  - Optional: None
+
+```
+{    
+    "title": "Explain GSM in detail",
+    "description": "GSM explained in detailed way"
+}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+post [object]
+```
+
+**Example:**
+```
 var data = {    
     "title": "Explain GSM in detail",
     "description": "GSM explained in detailed way"
@@ -121,13 +337,38 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function () { // Hard failure, like network error
-        console.error('Seems network error');
+    error: function (e) {
+        console.error(e.responseJSON);
     }
 });
+```
 
-7. GET POST LIST
----------------------------
+### 7. Get Post List
+
+`[GET] /api/posts`
+
+**Authentication:** None
+
+**Request:**
+
+  - Required: None
+
+  - Optional: None
+
+```
+{}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+post [object]
+```
+
+**Example:**
+```
 $.ajax({
     method: 'GET',
     url: '/api/posts',
@@ -135,13 +376,38 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function () { // Hard failure, like network error
-        console.error('Seems network error');
+    error: function (e) {
+        console.error(e.responseJSON);
     }
 });
+```
 
-8. GET POST
-----------------------------
+### 8. Get Post
+
+`[GET] /api/posts/:id`
+
+**Authentication:** None
+
+**Request:**
+
+  - Required: None
+
+  - Optional: None
+
+```
+{}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+post [object]
+```
+
+**Example:**
+```
 $.ajax({
     method: 'GET',
     url: '/api/posts/5e6a83897a34d3205434138d',
@@ -149,13 +415,40 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function () { // Hard failure, like network error
-        console.error('Seems network error');
+    error: function (e) {
+        console.error(e.responseJSON);
     }
 });
+```
 
-9. UPDATE POST
---------------------
+### 9. Update Post
+
+`[PATCH] /api/posts/:id`
+
+**Authentication:** JWT Token
+
+**Request:**
+
+  - Required: None
+
+  - Optional: title, description
+
+```
+{
+    "description": "The tile is Four. How about that?"
+}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+post [object]
+```
+
+**Example:**
+```
 var data = {
     "description": "The tile is Four. How about that?"
 }
@@ -170,13 +463,38 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function () { // Hard failure, like network error
-        console.error('Seems network error');
+    error: function (e) {
+        console.error(e.responseJSON);
     }
 });
+```
 
-10. DELETE POST
----------------------
+### 10. Delete Post
+
+`[DELETE] /api/posts/:id`
+
+**Authentication:** JWT Token
+
+**Request:**
+
+  - Required: None
+
+  - Optional: None
+
+```
+{}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+post [object]
+```
+
+**Example:**
+```
 $.ajax({
     method: 'DELETE',
     url: '/api/posts/5e6a884a46ef1127463560b8',
@@ -192,10 +510,37 @@ $.ajax({
         console.error(e.responseJSON);
     }
 });
+```
 
+### 11. Create Comment
 
-11. CREATE COMMENT
----------------------
+`[POST] /api/comments`
+
+**Authentication:** JWT Token
+
+**Request:**
+
+  - Required: postId, comment
+
+  - Optional: None
+
+```
+{
+    "comment": "How is Two and Two Four?",
+    "postId": "5e6a88a246ef1127463560b9"
+}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+post [object]
+```
+
+**Example:**
+```
 var data = {
     "comment": "How is Two and Two Four?",
     "postId": "5e6a88a246ef1127463560b9"
@@ -211,13 +556,40 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function (e) { // Hard failure, like network error
+    error: function (e) {
         console.error(e.responseJSON);
     }
 });
+```
 
-12. UPDATE COMMENT
----------------------
+### 12. Update Comment
+
+`[PATCH] /api/comments/:id`
+
+**Authentication:** JWT Token
+
+**Request:**
+
+  - Required: comment
+
+  - Optional: None
+
+```
+{
+    "comment": "Dont you know that from school?"
+}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+post [object]
+```
+
+**Example:**
+```
 var data = {
     "comment": "Dont you know that from school?"
 }
@@ -232,13 +604,38 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function (e) { // Hard failure, like network error
+    error: function (e) {
         console.error(e.responseJSON);
     }
 });
+```
 
-13. DELETE COMMENT
-------------------------
+### 13. Delete Comment
+
+`[DELETE] /api/comments/:id`
+
+**Authentication:** JWT Token
+
+**Request:**
+
+  - Required: None
+
+  - Optional: None
+
+```
+{}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+Post [Object] with deleted comment
+```
+
+**Example:**
+```
 $.ajax({
     method: 'DELETE',
     url: '/api/comments/5e6b3217fdbe6519ca45e161',
@@ -250,13 +647,42 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function (e) { // Hard failure, like network error
+    error: function (e) {
         console.error(e.responseJSON);
     }
 });
+```
 
-14. MODERATE POST CENSOR [ADMINS ONLY]
-------------------------------------------
+------------
+
+### 14. Moderate Post Censor [ADMINS ONLY]
+
+`[PATCH] /api/moderate/posts/:id`
+
+**Authentication:** JWT Token
+
+**Request:**
+
+  - Required: is_censored
+
+  - Optional: None
+
+```
+{
+    'is_censored': true
+}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+post [object]
+```
+
+**Example:**
+```
 var data = {
     'is_censored': true
 }
@@ -275,10 +701,34 @@ $.ajax({
         console.error(e.responseJSON);
     }
 });
+```
 
+### 15. Moderate Post Delete [ADMINS ONLY]
 
-15. MODERATE POST DELETE [ADMINS ONLY]
-------------------------------------------
+`[DELETE] /api/moderate/posts/:id`
+
+**Authentication:** JWT Token
+
+**Request:**
+
+  - Required: None
+
+  - Optional: None
+
+```
+{}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+post [object]
+```
+
+**Example:**
+```
 $.ajax({
     method: 'DELETE',
     url: '/api/moderate/posts/5e6a88a246ef1127463560b9',
@@ -289,13 +739,40 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function (e) { // Hard failure, like network error
+    error: function (e) {
         console.error(e.responseJSON);
     }
 });
+```
 
-16. MODERATE COMMENT CENSOR [ADMINS ONLY]
-------------------------------------------
+### 16. Moderate Comment Censor [ADMINS ONLY]
+
+`[PATCH] /api/users/logout`
+
+**Authentication:** JWT Token
+
+**Request:**
+
+  - Required: is_censored
+
+  - Optional: None
+
+```
+{
+    'is_censored': true
+}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+post [object]
+```
+
+**Example:**
+```
 var data = {
     'is_censored': true
 }
@@ -310,14 +787,38 @@ $.ajax({
     success: function (res) {
         console.log(res);
     },
-    error: function (e) { // Hard failure, like network error
+    error: function (e) {
         console.error(e.responseJSON);
     }
 });
+```
 
+### 17. Moderate Comment Delete [ADMINS ONLY]
 
-17. MODERATE COMMENT DELETE [ADMINS ONLY]
-------------------------------------------
+`[DELETE] /api/moderate/comments/:id`
+
+**Authentication:** JWT Token
+
+**Request:**
+
+  - Required: None
+
+  - Optional: None
+
+```
+{}
+```
+
+**Success Response:**
+
+  - Code: 200
+  
+```
+post [object]
+```
+
+**Example:**
+```
 $.ajax({
     method: 'DELETE',
     url: '/api/moderate/comments/5e6a88a246ef1127463560b9',
@@ -332,3 +833,5 @@ $.ajax({
         console.error(e.responseJSON);
     }
 });
+```
+
