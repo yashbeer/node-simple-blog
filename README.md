@@ -332,7 +332,7 @@ $.ajax({
     contentType: 'application/json',
     data: JSON.stringify(data),
     beforeSend: function(xhr){
-        xhr.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTZhODAxMmI3NzI2NzFlNzA1OGM3MmYiLCJpYXQiOjE1ODQwMzc5MDZ9.V3Kw8_UuzlEXIvvoN-qUkrK2wqm1tT3hx6rJxR470_M');
+        xhr.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTZiZGZmMjkwMzU5YjAwMTcwZTk4OWEiLCJpYXQiOjE1ODQxMzM5OTB9.vtH-Yc-uKvBTN5l_5qXFgVoPeokzw2Wngtbz3dZ2ieA');
     },
     success: function (res) {
         console.log(res);
@@ -458,7 +458,7 @@ $.ajax({
     contentType: 'application/json',
     data: JSON.stringify(data),
     beforeSend: function(xhr){
-        xhr.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTZhODAxMmI3NzI2NzFlNzA1OGM3MmYiLCJpYXQiOjE1ODQwMzc5MDZ9.V3Kw8_UuzlEXIvvoN-qUkrK2wqm1tT3hx6rJxR470_M');
+        xhr.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTZiZGZmMjkwMzU5YjAwMTcwZTk4OWEiLCJpYXQiOjE1ODQxMzM5OTB9.vtH-Yc-uKvBTN5l_5qXFgVoPeokzw2Wngtbz3dZ2ieA');
     },
     success: function (res) {
         console.log(res);
@@ -599,7 +599,7 @@ $.ajax({
     contentType: 'application/json',
     data: JSON.stringify(data),
     beforeSend: function(xhr){
-        xhr.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTZhODAxMmI3NzI2NzFlNzA1OGM3MmYiLCJpYXQiOjE1ODQwMzc5MDZ9.V3Kw8_UuzlEXIvvoN-qUkrK2wqm1tT3hx6rJxR470_M');
+        xhr.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTZiZGZmMjkwMzU5YjAwMTcwZTk4OWEiLCJpYXQiOjE1ODQxMzM5OTB9.vtH-Yc-uKvBTN5l_5qXFgVoPeokzw2Wngtbz3dZ2ieA');
     },
     success: function (res) {
         console.log(res);
@@ -642,7 +642,7 @@ $.ajax({
     contentType: 'application/json',
     //data: JSON.stringify(data),
     beforeSend: function(xhr){
-        xhr.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTZhODAxMmI3NzI2NzFlNzA1OGM3MmYiLCJpYXQiOjE1ODQwMzc5MDZ9.V3Kw8_UuzlEXIvvoN-qUkrK2wqm1tT3hx6rJxR470_M');
+        xhr.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTZiZGZmMjkwMzU5YjAwMTcwZTk4OWEiLCJpYXQiOjE1ODQxMzM5OTB9.vtH-Yc-uKvBTN5l_5qXFgVoPeokzw2Wngtbz3dZ2ieA');
     },
     success: function (res) {
         console.log(res);

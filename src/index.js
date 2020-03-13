@@ -13,7 +13,7 @@ app.get('', (req, res) => {
          str += '   <center>'
          str += '     <p></p>'
          str += '     <p><a href="/api/posts" target="_blank">Post List</a></p>'
-         str += '     <p><a href="/api/posts/5e6b795bd01e17229fb7eaea" target="_blank">Post Details</a></p>'
+         str += '     <p><a href="/api/posts/5e6bf8656dc0a500170058df" target="_blank">Post Details</a></p>'
          str += '   </center>'
          str += '<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>'
          
